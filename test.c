@@ -16,9 +16,9 @@
 // 	printf("%d\n", PRICE+1);
 // }
 
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
  
 /* http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort#C */
 inline

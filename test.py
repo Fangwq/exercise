@@ -16,7 +16,7 @@
 # print(timeit.timeit("sum(generate_c(999))", setup="from __main__ import generate_c", number=1000))
 
 
-# compile it with pypy
+# compile it with pypy, and it's fast
 # import timeit
 # import random
  
@@ -38,7 +38,7 @@
 # create our own C libraries to talk to Python
 from ctypes import *
 import time
- 
+
 libfunctions = cdll.LoadLibrary("libfunctions.so")
  
 def fibRec(n):
