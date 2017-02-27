@@ -1,4 +1,5 @@
 #accelerate python code with ctype, cython, pypy or another way.
+#And the code here refers to the code: http://www.maxburstein.com/blog/speeding-up-your-python-code/
 
 #=============================================================
 # accelerate code with ctypes
@@ -79,7 +80,7 @@ def merge_sort(m):
     if len(m) <= 1:
         return m
  
-    middle = len(m) // 2
+    middle = len(m) / 2
     left = m[:middle]
     right = m[middle:]
  
