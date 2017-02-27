@@ -1,5 +1,6 @@
-#accelerate python code with ctype or pypy
-#
+#accelerate python code with ctype, cython, pypy or another way.
+
+#=============================================================
 # accelerate code with ctypes
 # import timeit
 # from ctypes import cdll
@@ -15,7 +16,7 @@
  
 # print(timeit.timeit("sum(generate_c(999))", setup="from __main__ import generate_c", number=1000))
 
-
+#=============================================================
 # compile it with pypy, and it's fast
 # import timeit
 # import random
@@ -35,11 +36,20 @@
 # print(timeit.timeit("sum(generate(999))", setup="from __main__ import generate", number=1000))
 # print(timeit.timeit("sum(create_list(999))", setup="from __main__ import create_list", number=1000))
 
+#=============================================================
 # create our own C libraries to talk to Python
+# And the command I use is: gcc -Wall -O3 -shared test.c -o libfunction.so, 
+# and now the problem(Undefined symbols for architecture x86_64) does not happen.
+# I also get the right answer.  The -O3 option play critical role:
+# -O3 turns on all optimisation.
+
 from ctypes import *
 import time
+from random import shuffle, sample
+from heapq import merge
 
-libfunctions = cdll.LoadLibrary("libfunctions.so")
+
+libfunctions = cdll.LoadLibrary("libfunction.so")
  
 def fibRec(n):
     if n < 2:
@@ -58,35 +68,32 @@ x = libfunctions.fibRec(32)
 finish = time.time()
 print("C: " + str(finish - start))
 
+ 
+#Generate 9999 random numbers between 0 and 100000
+numbers = sample(range(100000), 9999)
+shuffle(numbers)
+c_numbers = (c_int * len(numbers))(*numbers)
 
-# from random import shuffle, sample
+
+def merge_sort(m):
+    if len(m) <= 1:
+        return m
  
-# #Generate 9999 random numbers between 0 and 100000
-# numbers = sample(range(100000), 9999)
-# shuffle(numbers)
-# c_numbers = (c_int * len(numbers))(*numbers)
+    middle = len(m) // 2
+    left = m[:middle]
+    right = m[middle:]
  
-# from heapq import merge
+    left = merge_sort(left)
+    right = merge_sort(right)
+    return list(merge(left, right))
  
-# def merge_sort(m):
-#     if len(m) <= 1:
-#         return m
+start = time.time()
+numbers = merge_sort(numbers)
+finish = time.time()
+print("Python: " + str(finish - start))
  
-#     middle = len(m) // 2
-#     left = m[:middle]
-#     right = m[middle:]
- 
-#     left = merge_sort(left)
-#     right = merge_sort(right)
-#     return list(merge(left, right))
- 
-# start = time.time()
-# numbers = merge_sort(numbers)
-# finish = time.time()
-# print("Python: " + str(finish - start))
- 
-# #C Merge Sort
-# start = time.time()
-# libfunctions.merge_sort(byref(c_numbers), len(numbers))
-# finish = time.time()
-# print("C: " + str(finish - start))
+#C Merge Sort
+start = time.time()
+libfunctions.merge_sort(byref(c_numbers), len(numbers))
+finish = time.time()
+print("C: " + str(finish - start))
