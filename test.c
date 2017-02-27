@@ -16,6 +16,7 @@
 // 	printf("%d\n", PRICE+1);
 // }
 
+// It should be used with test.py
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

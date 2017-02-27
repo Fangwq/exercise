@@ -1,5 +1,5 @@
 #accelerate python code with ctype, cython, pypy or another way.
-#And the code here refers to the code: http://www.maxburstein.com/blog/speeding-up-your-python-code/
+#And the code here and test.c refers to the code: http://www.maxburstein.com/blog/speeding-up-your-python-code/
 #I can learn that how to call library at the same time.
 
 #=============================================================
