@@ -54,6 +54,7 @@
 #     return radius*c
 
 #=====================================================
+# use the pure c function 
 
 cdef extern from "math.h":  
     float cosf(float theta)  
@@ -75,6 +76,6 @@ cdef float _great_circle(float lon1,float lat1,float lon2,float lat2):
 def great_circle(float lon1,float lat1,float lon2,float lat2,int num):  
     cdef int i  
     cdef float x  
-    for i from 0 <= i < num:  #get rid of xrange function
-        x = _great_circle(lon1,lat1,lon2,lat2)
+    for i from 0 <= i < num:  #do not use xrange function
+        x = _great_circle(lon1,lat1,lon2,lat2)   #I can't print the result, why?
     return x
