@@ -1,5 +1,6 @@
 #accelerate python code with ctype, cython, pypy or another way.
 #And the code here refers to the code: http://www.maxburstein.com/blog/speeding-up-your-python-code/
+#I can learn that how to call library at the same time.
 
 #=============================================================
 # accelerate code with ctypes
@@ -19,6 +20,7 @@
 
 #=============================================================
 # compile it with pypy, and it's fast
+# 
 # import timeit
 # import random
  
@@ -44,9 +46,12 @@
 # I also get the right answer.  The -O3 option play critical role:
 # -O3 turns on all optimisation.
 
+
+# ctype + c + pypy
 from ctypes import *
 import time
-from random import shuffle, sample
+from random import shuffle
+from random import sample
 from heapq import merge
 
 
@@ -74,6 +79,7 @@ print("C: " + str(finish - start))
 numbers = sample(range(100000), 9999)
 shuffle(numbers)
 c_numbers = (c_int * len(numbers))(*numbers)
+print hasattr(c_numbers,'value')
 
 
 def merge_sort(m):
@@ -95,6 +101,7 @@ print("Python: " + str(finish - start))
  
 #C Merge Sort
 start = time.time()
-libfunctions.merge_sort(byref(c_numbers), len(numbers))
+libfunctions.merge_sort(byref(c_numbers), len(numbers))		#pass c_numbers by reference
 finish = time.time()
 print("C: " + str(finish - start))
+
