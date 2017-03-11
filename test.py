@@ -41,7 +41,7 @@
 
 #=============================================================
 # create our own C libraries to talk to Python
-# And the command I use is: gcc -Wall -O3 -shared test.c -o libfunction.so, 
+# And the command I use is: gcc -Wall -O3 -shared test.c -o test.so, 
 # and now the problem(Undefined symbols for architecture x86_64) does not happen.
 # I also get the right answer.  The -O3 option play critical role:
 # -O3 turns on all optimisation.
@@ -54,8 +54,7 @@ from random import shuffle
 from random import sample
 from heapq import merge
 
-
-libfunctions = cdll.LoadLibrary("libfunction.so")
+libfunctions = cdll.LoadLibrary("test.so")
  
 def fibRec(n):
     if n < 2:

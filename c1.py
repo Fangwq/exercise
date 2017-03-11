@@ -7,9 +7,8 @@
 import timeit
 
 lon1, lat1, lon2, lat2 = -72.345, 34.323, -61.823, 54.826
-num = 5000000
+num = 50
 
-t = timeit.Timer("c1.great_circle(%f, %f, %f,%f, %f)" % (lon1,lat1,lon2,lat2, num),"import c1")
-# t = timeit.Timer("c1.great_circle(%f, %f, %f, %f)" % (lon1,lat1,lon2,lat2),"import c1")
-print 'Cython function(not using python math)', t.timeit(), "sec"
-# print 'Cython function(not using python math)', t.timeit(num), "sec"
+t = timeit.timeit("c1.great_circle(%f, %f, %f,%f, %f)" % (lon1,lat1,lon2,lat2, num),"import c1")
+# t = timeit.timeit("c1.great_circle(%f, %f, %f, %f)" % (lon1,lat1,lon2,lat2),setup="import c1",number=num)
+print 'Cython function(not using python math)', t, "sec"

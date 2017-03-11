@@ -61,7 +61,7 @@ cdef extern from "math.h":
     float sinf(float theta)  
     float acosf(float theta)  
   
-cdef float _great_circle(float lon1,float lat1,float lon2,float lat2):  
+cdef float circle(float lon1,float lat1,float lon2,float lat2):  
     cdef float radius = 3956.0  
     cdef float pi = 3.14159265  
     cdef float x = pi/180.0  
@@ -77,5 +77,5 @@ def great_circle(float lon1,float lat1,float lon2,float lat2,int num):
     cdef int i  
     cdef float x  
     for i from 0 <= i < num:  #do not use xrange function
-        x = _great_circle(lon1,lat1,lon2,lat2)   #I can't print the result, why?
+        x = circle(lon1,lat1,lon2,lat2)   #I can't print the result, why?
     return x
