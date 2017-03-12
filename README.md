@@ -1,1 +1,1 @@
-This repository aims to be used for fun. I will write any useful codes or learn something new in my daily life.
+This repository aims to be used for fun. I will write any useful codes or learn something new in my daily life. And I learn cython with book <<OReilly Cython, A Guide for Python Programmers>>. Other codes will be presented here too.
