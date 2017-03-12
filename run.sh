@@ -14,6 +14,12 @@ python $file.py
 rm  $file.c
 rm  $file.o
 rm  $file.so
+if [ -e $file.pyc ]; then		#blank is needed in bracket [ ]
+		echo "OK, $file.pyc is removed."
+		rm $file.pyc
+else
+		echo "NO, $file.pyc doesn't exist. "
+fi
 echo -n "The running finished!"
 printf "\n"
 
