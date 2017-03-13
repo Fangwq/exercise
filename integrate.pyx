@@ -54,25 +54,37 @@ cpdef cast_to_list(a):
 
 #struct is not allowed to define in def function?
     
-ctypedef union num:  #union: do not make it clear
+ctypedef union num:  #union: make it clear
     int z
     int x, y
+
+#def fun(a):
+#    cdef num xx
+#    xx.z=1
+#    xx.x=2
+#    xx.y=3
+#    return xx
 
 ctypedef struct mm:  #struct: it's a dict type data
     float real, imag
     num xx
 
 cpdef fun(a):       #ctypedef is not allowed in def function
-    cdef mm zz  #initialize: dictionary, dot and literal->mycpx(x, y)
-    #cdef num xx = num(z=4, x=5, y=6) 
-    #cdef num xx = {'z':1, 'x':5, 'y':6}
-    #print type(xx)
-    zz.real = np.pi 
-    zz.imag = -1
-    zz.xx.z = 2
-    zz.xx.x = 3
-    zz.xx.y =4
-    b = zz.xx.z * zz.xx.x + zz.xx.y
+    cdef num data
+    #cdef mm zz = mm(np.pi, -1, data)
+    cdef mm zz = {'real': np.pi, 'imag': -1, 'xx': data}
+    data.z = 2
+    data.x = 3
+    data.y = 4
+    b = data.z * data.x + data.y
+    #========another method to initialize=========
+    #cdef mm zz  
+    #zz.real = np.pi 
+    #zz.imag = -1
+    #zz.xx.z = 2
+    #zz.xx.x = 3
+    #zz.xx.y =4
+    #b = zz.xx.z * zz.xx.x + zz.xx.y
     a = a + zz.real + complex(zz.imag)
     return a, b 
 
