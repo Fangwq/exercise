@@ -54,7 +54,7 @@ cpdef cast_to_list(a):
 
 #struct is not allowed to define in def function?
     
-ctypedef union num:  #union:
+ctypedef union num:  #union: do not make it clear
     int z
     int x, y
 
@@ -69,11 +69,10 @@ cpdef fun(a):       #ctypedef is not allowed in def function
     #print type(xx)
     zz.real = np.pi 
     zz.imag = -1
-    zz.xx = num(4, 5, 6) 
-    #zz.xx = num({'z':1, 'x':5, 'y':6})
-    xx = zz.xx
-    #xx = zz.num(z=4, x=5, y=6)
-    b = xx.z* xx.x + xx.y
+    zz.xx.z = 2
+    zz.xx.x = 3
+    zz.xx.y =4
+    b = zz.xx.z * zz.xx.x + zz.xx.y
     a = a + zz.real + complex(zz.imag)
-    return a
+    return a, b 
 
