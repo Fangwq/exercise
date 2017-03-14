@@ -88,3 +88,17 @@ cpdef fun(a):       #ctypedef is not allowed in def function
     a = a + zz.real + complex(zz.imag)
     return a, b 
 
+DEF PI=3.1415926
+
+ctypedef fused integer_or_int: #it combine all the type defined below
+    cython.long
+    cython.int
+    cython.short
+    cython.float
+    cython.double
+
+cpdef integer_or_int gen(integer_or_int a, integer_or_int b):
+    if a > b:
+        return a
+    else:
+        return b
