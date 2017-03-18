@@ -68,15 +68,22 @@ ctypedef union num:  #union: make it clear
 ctypedef struct mm:  #struct: it's a dict type data
     float real, imag
     num xx
+    #list test       #C struct/union member cannot be a Python object
+    int test[3]
+
 
 cpdef fun(a):       #ctypedef is not allowed in def function
     cdef num data
+    #cdef list test
     #cdef mm zz = mm(np.pi, -1, data)
     cdef mm zz = {'real': np.pi, 'imag': -1, 'xx': data}
     data.z = 2
     data.x = 3
     data.y = 4
+    a = a + zz.real + complex(zz.imag)
     b = data.z * data.x + data.y
+    zz.test = [1,2,3]
+    #test = [1,2,3]
     #========another method to initialize=========
     #cdef mm zz  
     #zz.real = np.pi 
@@ -85,8 +92,7 @@ cpdef fun(a):       #ctypedef is not allowed in def function
     #zz.xx.x = 3
     #zz.xx.y =4
     #b = zz.xx.z * zz.xx.x + zz.xx.y
-    a = a + zz.real + complex(zz.imag)
-    return a, b 
+    return a, b, zz
 
 DEF PI=3.1415926
 
