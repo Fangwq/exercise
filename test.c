@@ -1,16 +1,8 @@
-// #include <stdio.h>
-// main()
-// {	
 // 	int i, t;
-// 	# define PRICE 30
-// 	i = 1;
-// 	t = 1;
-// 	while (i<=5){
 // 		t = t*i;
 // 		i = i+1;
 // 		// PRICE = PRICE +1;
 // 	}
-
 // 	// printf("Hello world!\n");
 // 	printf("%d\n", t);
 // 	printf("%d\n", PRICE+1);
@@ -20,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
- 
+
 /* http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort#C */
 inline
 void merge(int *left, int l_len, int *right, int r_len, int *out)
@@ -62,10 +54,11 @@ void merge_sort(int *buf, int len)
  
 	free(tmp);
 }
- 
+
 int fibRec(int n){
     if(n < 2)
         return n;
-    else
+		else
         return fibRec(n-1) + fibRec(n-2);
 }
+

@@ -6,6 +6,7 @@
 file=$1
 echo -n "Begin to run the code, wait for a moment..."
 printf "\n"
+echo "========================="
 cython $file.pyx
 gcc -c -fPIC -I/usr/include/python2.7/ $file.c
 gcc -shared $file.o -o $file.so -lpython2.7
@@ -20,6 +21,7 @@ if [ -e $file.pyc ]; then		#blank is needed in bracket [ ]
 else
 		echo "NO, $file.pyc doesn't exist. "
 fi
+echo "========================="
 echo -n "The running finished!"
 printf "\n"
 
