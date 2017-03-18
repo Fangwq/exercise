@@ -92,7 +92,7 @@ cpdef fun(a):       #ctypedef is not allowed in def function
     #zz.xx.x = 3
     #zz.xx.y =4
     #b = zz.xx.z * zz.xx.x + zz.xx.y
-    return a, b, zz
+    return a, b, zz.test
 
 DEF PI=3.1415926
 
