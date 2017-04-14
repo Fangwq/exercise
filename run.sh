@@ -1,8 +1,7 @@
 #!/bin/bash
-# I still need to enter a file name, it's boring
 #echo -n "please enter the file name with pyx extension: "
 #read name
-#If I run the code with ./run.sh filename, then don't need to read
+#usage: ./run.sh filename
 file=$1
 echo -n "Begin to run the code, wait for a moment..."
 printf "\n"
@@ -16,8 +15,8 @@ rm  $file.c
 rm  $file.o
 rm  $file.so
 if [ -e $file.pyc ]; then		#blank is needed in bracket [ ]
-		echo "OK, $file.pyc is removed."
 		rm $file.pyc
+		echo "OK, $file.pyc is removed."
 else
 		echo "NO, $file.pyc doesn't exist. "
 fi
