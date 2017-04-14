@@ -69,14 +69,18 @@ ctypedef struct mm:  #struct: it's a dict type data
     float real, imag
     num xx
     #list test       #C struct/union member cannot be a Python object
-    int test[3]
+    int test[3]      #a little confuse about initialize in dict for array type
 
 
 cpdef fun(a):       #ctypedef is not allowed in def function
     cdef num data
-    #cdef list test
-    #cdef mm zz = mm(np.pi, -1, data)
-    cdef mm zz = {'real': np.pi, 'imag': -1, 'xx': data}
+    cdef int temp[2]
+    print type(temp)
+    temp={1,2}
+    print '======:',type(temp),temp
+    #cdef list test=[1,2,3]
+    #cdef mm zz = mm(np.pi, -1, data,temp)
+    cdef mm zz = {'real': np.pi, 'imag': -1, 'xx': data }
     data.z = 2
     data.x = 3
     data.y = 4
