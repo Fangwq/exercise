@@ -24,3 +24,14 @@ echo "========================="
 echo -n "The running finished!"
 printf "\n"
 
+
+# for python3
+#LIBDIRSa=-I/Users/fangwq/Library/Python/3.7/lib/python/site-packages/numpy/core/include
+#LIBDIRSb=-I/usr/local/Cellar/python/3.7.5/Frameworks/Python.framework/Versions/3.7/include/python3.7m
+
+#PYTHONLIBa=-L/usr/local/Cellar/python/3.7.5/Frameworks/Python.framework/Versions/3.7/lib/python3.7/config-3.7m-darwin
+#PYTHONLIBb=-lpython3.7
+
+#cython $file.pyx
+#gcc-7 -c -fPIC $LIBDIRSa $LIBDIRSb $file.c
+#gcc-7 -shared $file.o -o $file.so $PYTHONLIBa $PYTHONLIBb
